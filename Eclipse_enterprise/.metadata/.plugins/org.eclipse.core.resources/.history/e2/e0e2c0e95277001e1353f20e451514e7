@@ -1,0 +1,47 @@
+package com.example.demo.controller;
+
+import java.sql.Date;
+import java.util.Calendar;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import com.example.demo.entities.Booking;
+import com.example.demo.repository.BookingRepository;
+@Controller
+public class BookingCountController {
+	@Autowired
+	private BookingRepository bookingRepository;
+	 @GetMapping("/monthlyCount")
+	    public String showMonthlyBookingCount(Model model) {
+		 Date toDate = new Date(0);
+
+	        // Calculate the "from" date, which is one month ago from the current date
+	        Calendar calendar = Calendar.getInstance();
+	        calendar.setTime(toDate);
+	        calendar.add(Calendar.MONTH, -1);
+	        Date fromDate = (Date) calendar.getTime();
+
+	        // Fetch the monthly booking count based on the date range
+	        long monthlyCount = Booking.getMonthlyBookingCount(fromDate);
+
+	        model.addAttribute("monthlyCount", monthlyCount);
+
+	        // Return the name of the JSP view for displaying the count
+	        return "monthlyCount";
+	    }
+	 @PostMapping("/bookTicket")
+	    public Booking bookTicket(@RequestBody Booking booking) {
+	        // Save the booking
+	        Booking savedBooking = new Booking();
+	        bookingRepository.save(savedBooking);
+	        return savedBooking;
+	    }
+	 
+	}
+
+

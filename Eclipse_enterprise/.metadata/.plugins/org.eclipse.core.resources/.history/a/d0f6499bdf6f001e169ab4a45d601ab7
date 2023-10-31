@@ -1,0 +1,5 @@
+package hibernatedemo.entities;
+
+public class Product {
+
+}

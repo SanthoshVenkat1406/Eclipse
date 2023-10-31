@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<style>
+	/* Apply a background color and some padding to the body */
+body {
+    background-color: #f2f2f2;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Center the login form on the page */
+form {
+    background-color: #fff;
+    max-width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Center the form elements and add some spacing */
+form center {
+    text-align: center;
+}
+
+/* Style the headings */
+h2 {
+    color: #333;
+}
+
+/* Style input fields and labels */
+input[type="text"],
+input[type="password"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+/* Style the submit button */
+input[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+/* Change button color on hover */
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+</style>
+<title>Login Page</title>
+</head>
+<body>
+	<form action="login.jsp", method="post">
+	<center>
+	<h2>Login to Proceed</h2>
+	User Name <input type="text" name ="username", required><br><br>
+	Password <input type="password" name = "password", required><br><br>
+	Role <select name = "role" id = "role">
+		
+	<option value ="user">User</option>
+	<option value = "admin">Admin</option>
+	
+	</select> <br><br>
+	
+	<input type="submit" value="Login">
+	
+</center>
+</form>
+</body>
+</html> 

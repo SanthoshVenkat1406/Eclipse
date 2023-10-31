@@ -1,0 +1,40 @@
+package com.example.demo.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.example.demo.entities.LocationDistance;
+import com.example.demo.repository.LocationDistanceRepository;
+
+@Controller
+public class TicketController {
+	
+	private final LocationDistanceRepository locationDistanceRepository;
+
+    public TicketController(LocationDistanceRepository locationDistanceRepository) {
+        this.locationDistanceRepository = locationDistanceRepository;
+    }
+    @GetMapping("/calculateTicketPrice")
+    public String calculateTicketPrice(
+        @RequestParam String fromLocation,
+        @RequestParam String toLocation,
+        Model model
+    ) {
+    	 LocationDistance locationDistance = locationDistanceRepository.findByFromLocationAndToLocation(fromLocation, toLocation);
+
+         // Calculate ticket price based on distance and your pricing model
+         double distanceKilometers = locationDistance.getDistanceKilometers();
+         double ticketPrice = calculateTicketPrice(distanceKilometers);
+
+         // Add the calculated ticket price to the model to be displayed in the JSP
+         model.addAttribute("ticketPrice", ticketPrice);
+
+         return "calculateTicketPrice"; // Return the name of your JSP view
+     }
+	private double calculateTicketPrice(double distanceKilometers) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+}

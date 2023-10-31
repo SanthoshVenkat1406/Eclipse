@@ -1,0 +1,55 @@
+package com.example.demo;
+
+import java.util.Scanner;
+
+import org.springframework.boot.CommandLineRunner;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+
+import com.example.demo.entities.User;
+
+import com.example.demo.repository.UserRepository;
+
+@SpringBootApplication
+public class Application {
+
+	public static void main(String[] args) {
+	    SpringApplication.run(Application.class, args);
+
+	    // Uncomment the following user interaction code as needed
+	    Scanner sc = new Scanner(System.in);
+	    while (true) {
+	        System.out.println("Select an option:");
+	        System.out.println("1. Register user");
+	        System.out.println("2. Deposit amount");
+	        System.out.println("3. Check balance");
+	        System.out.println("4. Remove user account");
+	        System.out.println("5. Exit...");
+	        int value = sc.nextInt();
+	        if (value == 5) {
+	            System.out.println("Thank you!");
+	            break;
+	        }
+	        // Implement user interaction logic based on the selected option
+	        switch (value) {
+	            case 1:
+	                // User registration logic
+	                break;
+	            case 2:
+	                // Deposit amount logic
+	                break;
+	            case 3:
+	                // Check balance logic
+	                break;
+	            case 4:
+	                // Remove user account logic
+	                break;
+	            default:
+	                System.out.println("Invalid option. Please select a valid option.");
+	                break;
+	        }
+	    }
+	}
+}

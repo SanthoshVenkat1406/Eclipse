@@ -1,0 +1,31 @@
+package com.example.demo.entities;
+
+import jakarta.persistence.Entity;
+
+@Entity
+public class LocationDistance {
+	    private String fromLocation;
+	    private String toLocation;
+	    private double distanceKilometers;
+		public String getFromLocation() {
+			return fromLocation;
+		}
+		public void setFromLocation(String fromLocation) {
+			this.fromLocation = fromLocation;
+		}
+		public String getToLocation() {
+			return toLocation;
+		}
+		public void setToLocation(String toLocation) {
+			this.toLocation = toLocation;
+		}
+		public double getDistanceKilometers() {
+			return distanceKilometers;
+		}
+		public void setDistanceKilometers(double distanceKilometers) {
+			this.distanceKilometers = distanceKilometers;
+		}
+
+	    // getters and setters
+	}
+

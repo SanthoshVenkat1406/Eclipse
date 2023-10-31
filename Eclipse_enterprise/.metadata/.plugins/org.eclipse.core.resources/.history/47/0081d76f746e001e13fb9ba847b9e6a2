@@ -1,0 +1,111 @@
+package banking;
+
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+/**
+ * Servlet implementation class withdrawServlet
+ */
+@WebServlet("/withdrawServlet")
+public class withdrawServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public withdrawServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		HttpSession session = request.getSession();
+        String userId = (String) session.getAttribute("userId");
+        
+        double withdrawAmount = Double.parseDouble(request.getParameter("withdrawAmount"));
+        if(withdrawAmount <=1000)
+        {
+        	response.getWriter().println("Invalid withdrawal amount.");
+        } 
+        else {
+            response.getWriter().println("Withdrawal successful. Amount: " + withdrawAmount);
+        }
+        
+        }
+	
+	  private boolean updateBalance(String userId, double withdrawAmount) {
+        Connection connection = null;
+
+        try {
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/bank", "root", "Sandygavs@2001");
+
+            double currentBalance = getCurrentBalance(connection, userId);
+
+            if (currentBalance >= withdrawAmount) {
+                double newBalance = currentBalance - withdrawAmount;
+
+                updateBalanceInDatabase(connection, userId, newBalance);
+
+                return true; // Withdrawal successful
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return false; // Withdrawal failed
+    }
+
+    // Implement a method to retrieve the user's current balance from the database
+    private double getCurrentBalance(Connection connection, String userId) throws SQLException {
+        String selectQuery = "SELECT accbalance FROM users WHERE userID = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(selectQuery);
+        preparedStatement.setString(1, userId);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        if (resultSet.next()) {
+            return resultSet.getDouble("accbalance");
+        }
+
+        return 0.0; // Default balance if not found
+    }
+
+    // Implement a method to update the user's balance in the database
+    private void updateBalanceInDatabase(Connection connection, String userId, double newBalance) throws SQLException {
+        String updateQuery = "UPDATE users SET accbalance = ? WHERE userID = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(updateQuery);
+        preparedStatement.setDouble(1, newBalance);
+        preparedStatement.setString(2, userId);
+        preparedStatement.executeUpdate();
+    }
+}
+
+
+
+
+
+
+	}
+

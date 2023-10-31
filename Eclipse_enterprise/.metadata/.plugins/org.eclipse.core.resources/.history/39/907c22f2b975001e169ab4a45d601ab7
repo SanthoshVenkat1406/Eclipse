@@ -1,0 +1,37 @@
+package com.example.demo.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.example.demo.repository.viewTrainRepository;
+
+import ch.qos.logback.core.model.Model;
+
+@Controller
+public class viewTrainController {
+	@Autowired
+    private viewTrainRepository trainRepository;
+
+    @GetMapping("/viewTrains")
+    public String viewTrains(Model model) {
+        List<viewTrain> trains = trainRepository.findAll(); // Retrieve all trains from the database
+        model.addAttribute("trains", trains); // Add the list of trains to the model
+        return "viewTrains"; // Return the view (JSP) where you display the list of trains
+    }
+
+    @PostMapping("/removeTrains")
+    public String removeTrains(@RequestParam("selectedTrains") List<String> selectedTrainNumbers) {
+        // Implement the logic to remove selected trains based on their train numbers
+        for (String trainNumber : selectedTrainNumbers) {
+            trainRepository.deleteById(trainNumber); // Remove trains by their train number
+        }
+        return "redirect:/viewTrains"; // Redirect back to the viewTrains page after removal
+    }
+}
+
+}

@@ -1,0 +1,34 @@
+package com.example.demo.controller;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.example.demo.Entities.Currency;
+import com.example.demo.repository.CurrencyRepository;
+
+@Controller
+public class CurrencyController {
+    @Autowired
+    private CurrencyRepository currencyRepository;
+
+    @GetMapping("/currency")
+    public String currencyPage(Model model) {
+        // You can retrieve the list of currencies from the repository and add them to the model
+        Iterable<Currency> currencies = currencyRepository.findAll();
+        model.addAttribute("currencies", currencies);
+        return "currency"; 
+    }
+
+    @PostMapping("/currency")
+    public String addCurrency(@RequestParam String code, @RequestParam double exchangeRate) {
+        Currency currency = new Currency();
+        currency.setCode(code);
+        currency.setExchangeRate(exchangeRate);
+        currencyRepository.save(currency);
+        return "redirect:/currency"; 
+    }
+}
+

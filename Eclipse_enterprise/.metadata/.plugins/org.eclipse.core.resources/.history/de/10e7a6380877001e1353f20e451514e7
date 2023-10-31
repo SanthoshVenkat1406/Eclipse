@@ -1,0 +1,51 @@
+package com.example.demo.controller;
+ 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.example.demo.entities.City;
+import com.example.demo.entities.User;
+import com.example.demo.repository.CityRepository;
+import com.example.demo.repository.UserRepository;
+import com.example.demo.service.CityService;
+
+import jakarta.servlet.http.HttpSession;
+ 
+@Controller
+public class LoginController {
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    CityService service;
+
+    @GetMapping("/login")
+    public String loginPage() {
+        return "login";
+    }
+    @GetMapping("/dashboard")
+    public Iterable<City> dashboardPage(Model model) {
+            Iterable<City> cities = service.getAllTrains();
+            model.addAttribute("cities", cities);
+//            return "dashboard";
+            return cities;
+    }
+    @PostMapping("/login")
+    public String login(@RequestParam String user, @RequestParam String pass, HttpSession session) {
+        User userFromDB = userRepository.findByUsernameAndPassword(user, pass);
+        if (userFromDB != null) {
+            // Authentication successful
+            session.setAttribute("loggedInUser", userFromDB);
+            return "redirect:/dashboard"; // Redirect to a dashboard page
+        } else {
+            // Authentication failed
+            return "redirect:/error"; // Return to the login page with an error message
+        }
+    }
+}

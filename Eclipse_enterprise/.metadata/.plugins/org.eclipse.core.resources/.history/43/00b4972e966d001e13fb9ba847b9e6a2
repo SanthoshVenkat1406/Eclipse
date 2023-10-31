@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+<h2>Admin View of Data</h2>
+
+    <table border="1">
+
+        <tr>
+
+            <th>Part ID</th>
+
+            <th>Part Name</th>
+
+            <th>Color </th>
+
+        </tr>
+
+        <!-- This table will be populated by the servlet you provided -->
+
+    </table>
+    
+</body>
+</html>

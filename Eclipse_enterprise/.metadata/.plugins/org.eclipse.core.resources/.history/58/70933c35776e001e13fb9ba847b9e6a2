@@ -1,0 +1,69 @@
+package banking;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+/**
+ * Servlet implementation class DepositServlet
+ */
+@WebServlet("/DepositServlet")
+public class DepositServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public DepositServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		 HttpSession session = request.getSession();
+	        String userId = (String) session.getAttribute("userId");
+	        PrintWriter out = response.getWriter();
+	        out.println("Deposit successful.");
+
+	        if (userId == null) {
+	            response.sendRedirect("login.jsp");
+	            return;
+	        }
+
+	        double depositAmount = Double.parseDouble(request.getParameter("depositAmount"));
+	        private double getCurrentBalance(Connection connection, String userId) throws SQLException {
+	            String selectQuery = "SELECT accbalance FROM users WHERE userID = ?";
+	            PreparedStatement preparedStatement = connection.prepareStatement(selectQuery);
+	            preparedStatement.setString(1, userId);
+	            ResultSet resultSet = preparedStatement.executeQuery();
+
+	            if (resultSet.next()) {
+	                return resultSet.getDouble("accbalance");
+	            }
+
+	            return 0.0; // Default balance if not found
+	        }
+
+	        // Implement a method to update the user's balance in the database
+	        private void updateBalanceInDatabase(Connection connection, String userId, double newBalance) throws SQLException {
+	            String updateQuery = "UPDATE users SET accbalance = ? WHERE userID = ?";
+	            PreparedStatement preparedStatement = connection.prepareStatement(updateQuery);
+	            preparedStatement.setDouble(1, newBalance);
+	            preparedStatement.setString(2, userId);
+	            preparedStatement.executeUpdate();
+	        }
+	}
+	        

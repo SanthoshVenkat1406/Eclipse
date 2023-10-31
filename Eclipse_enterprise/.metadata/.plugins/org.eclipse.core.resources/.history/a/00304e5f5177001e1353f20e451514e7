@@ -1,0 +1,31 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Monthly Booking Count</title>
+    <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $(function() {
+            // Initialize datepickers
+            $("#fromDate").datepicker();
+            $("#toDate").datepicker();
+        });
+    </script>
+</head>
+<body>
+    <h1>Monthly Booking Count</h1>
+    
+    <form action="/monthlyBookingCount" method="post">
+        <label for="fromDate">From Date:</label>
+        <input type="text" id="fromDate" name="fromDate" required><br>
+
+        <label for="toDate">To Date:</label>
+        <input type="text" id="toDate" name="toDate" required><br>
+
+        <input type="submit" value="Get Monthly Count">
+    </form>
+</body>
+</html>

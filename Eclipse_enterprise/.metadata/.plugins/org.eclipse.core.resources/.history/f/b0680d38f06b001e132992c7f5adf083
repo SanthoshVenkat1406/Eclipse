@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="/Sandy/demoProject" method="post"></form>
+	Part_id <input type = "text" name="partid"><br>
+	Part_name <input type = "text" name ="partname"><br>
+	Color <select>
+		<option> Blue </option>
+		<option>Green</option>
+		<option>Red</option>
+	</select><br>
+<input type="submit" value ="add"><br><br>
+
+</body>
+</html>

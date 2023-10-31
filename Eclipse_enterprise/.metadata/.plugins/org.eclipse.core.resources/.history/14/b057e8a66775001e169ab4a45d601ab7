@@ -1,0 +1,72 @@
+package com.example.demo.Entities;
+
+
+
+public class CurrencyConversion {
+	
+	@GetMapping("/convert")
+
+    public String showCurrencyConverter() {
+
+        return "currencyConversion";
+
+    }
+    @PostMapping("/result")
+
+    public String convertCurrency(
+
+        @RequestParam("amount") double amount,
+
+        @RequestParam("sourceCurrency") String sourceCurrency,
+
+        @RequestParam("targetCurrency") String targetCurrency,
+
+        Model model) {
+
+ 
+
+        double convertedAmount = performConversion(amount, sourceCurrency, targetCurrency);
+
+        
+
+        model.addAttribute("amount", amount);
+
+        model.addAttribute("sourceCurrency", sourceCurrency);
+
+        model.addAttribute("targetCurrency", targetCurrency);
+
+        model.addAttribute("convertedAmount", convertedAmount);
+
+        
+
+        return "result"; // Create a result JSP to display the conversion result
+
+    }
+
+ 
+
+    private double performConversion(double amount, String sourceCurrency, String targetCurrency) {
+
+       
+
+        double conversionRate = 1.2; // 1 USD to EUR
+
+        if (sourceCurrency.equals("USD") && targetCurrency.equals("EUR")) {
+
+            return amount * conversionRate;
+
+        } else if (sourceCurrency.equals("EUR") && targetCurrency.equals("USD")) {
+
+            return amount / conversionRate;
+
+        } else {
+
+            return amount; // No conversion
+
+        }
+
+    }
+
+}
+
+}

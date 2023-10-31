@@ -1,0 +1,11 @@
+package orm.hibernateDemo;
+import org.hibernate.SessionFactory;
+import orm.hibernateDemo.config.HibernateUtility;
+
+public class App {
+  public static void main(String[] args) {
+	  
+	    SessionFactory sessionFactory=HibernateUtility.getSessionFactoryObject(); 
+	    
+  }
+}

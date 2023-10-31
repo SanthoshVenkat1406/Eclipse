@@ -1,0 +1,24 @@
+package com.example.demo.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.Entities.admin;
+import com.example.demo.repository.adminRepository;
+
+@Service
+public class adminService {
+    @Autowired
+    private adminRepository adminRepository;
+
+    public void registerUser(String username, String password) {
+        admin admin1 = new admin();
+        admin1.setUsername(username);
+        admin1.setPassword(password);
+        adminRepository.save(admin1);
+    }
+
+    public admin findByUsernameAndPassword(String username,String password) {
+        return adminRepository.findByUsernameAndPassword(username,password);
+    }
+}

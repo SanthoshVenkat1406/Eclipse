@@ -1,0 +1,59 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Railway Dashboard</title>
+    <style>
+        body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f0;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+h2 {
+    color: blue;
+    font-size: 28px;
+    margin: 20px 0;
+}
+
+.button-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.button-container button {
+    display: inline-block; /* Display buttons in a single line */
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button-container button:hover {
+    background-color: #0056b3;
+}
+
+    </style>
+</head>
+<body>
+    <h2>Dashboard Home Page</h2>
+    <h2>Welcome to the Railway System</h2>
+    
+    <div class="button-container">
+        <button onclick="location.href='/addTrain'">Add Train</button>
+        <button onclick="location.href='/removeTrain'">Remove Train</button><br>
+        <button onclick="location.href='/ticketBooking'">Ticket Booking</button>
+        <button onclick="location.href='/monthlyReport'">Monthly Report</button><br>
+        <button onclick="location.href='/schedule'">Schedule</button>
+    </div>
+</body>
+</html>

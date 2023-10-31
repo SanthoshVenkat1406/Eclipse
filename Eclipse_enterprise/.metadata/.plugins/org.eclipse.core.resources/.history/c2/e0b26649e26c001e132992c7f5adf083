@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Login Page</title>
+</head>
+<body>
+	<form action="", method="post"></form>
+	<center>
+	<h2>Login to Proceed</h2>
+	User Name <input type="text" name ="username", required><br><br>
+	Password <input type="password" name = "password", required><br><br>
+	Role <select name = "role" id = "role">
+		
+	<option value ="user">User</option>
+	<option value = "admin">Admin</option><br><br>
+	
+	<input type="submit" value="Login">
+</select>	
+</center>
+</body>
+</html> 

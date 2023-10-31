@@ -1,0 +1,31 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Add Train </title>
+</head>
+<body>
+
+<h2>Add Train</h2>
+    <form action="/addTrain" method="post">
+        <label for="trainNumber">Train Number:</label>
+        <input type="text" id="trainNumber" name="trainNumber" required><br>
+
+        <label for="trainName">Train Name:</label>
+        <input type="text" id="trainName" name="trainName" required><br>
+
+        <label for="timings">Timings:</label>
+        <input type="text" id="timings" name="timings" required><br>
+
+        <label for="startPoint">Start Point:</label>
+        <input type="text" id="startPoint" name="startPoint" required><br>
+
+        <label for="endPoint">End Point:</label>
+        <input type="text" id="endPoint" name="endPoint" required><br>
+
+        <input type="submit" value="Add Train">
+    </form>
+</body>
+</html>

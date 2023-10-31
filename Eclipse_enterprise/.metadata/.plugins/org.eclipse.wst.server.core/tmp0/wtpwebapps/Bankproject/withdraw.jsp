@@ -1,0 +1,16 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Withdraw page</title>
+</head>
+<body>
+<h1>Withdraw Money</h1>
+    <form action="withdrawServlet" method="post">
+        Amount to Withdraw: <input type="text" name="withdrawAmount"><br><br>
+        <input type="submit" value="Withdraw">
+    </form>
+</body>
+</html>

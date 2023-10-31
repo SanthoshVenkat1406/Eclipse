@@ -1,0 +1,42 @@
+package com.example.demo.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.example.demo.entities.addTrain;
+import com.example.demo.repository.addTrainRepository;
+
+
+@Controller
+public class TrainController {
+	@Autowired
+    private addTrainRepository trainRepository;
+
+	@GetMapping("/addTrain")
+    public String showAddTrainPage() {
+        return "addTrain";
+    }
+
+    @PostMapping("/addTrain")
+    public String addTrain(
+    		@RequestParam("trainNumber") String trainNumber,
+            @RequestParam("trainName") String trainName,
+            @RequestParam("timings") String timings,
+            @RequestParam("startPoint") String startPoint,
+            @RequestParam("endPoint") String endPoint) {
+        // Create a Train object and save it to the database
+    	addTrain train = new addTrain();
+        train.setTrainNumber(trainNumber);
+        train.setTrainName(trainName);
+        train.setTimings(timings);
+        train.setStartPoint(startPoint);
+        train.setEndPoint(endPoint);
+
+        return "Train added successfully"; // Redirect to the dashboard or any other page
+    }
+}
+
+

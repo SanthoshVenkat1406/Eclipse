@@ -1,0 +1,21 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Train Details</title>
+</head>
+<body>
+
+<h2> Newly Added Train Details </h2>
+    <div class="train">
+        <p class="Train Number">: ${addTrain.trainNumber}</p>
+        <p class="Train Name">: ${addTrain.trainName}</p>
+        <p class="Timings">: ${addTrain.timings}</p> 
+        <p class="Start Point">: ${addTrain.startPoint}</p>
+         <p class="End Point">: ${addTrain.endPoint}</p>
+    </div>
+
+</body>
+</html>

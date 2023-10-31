@@ -1,0 +1,17 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ticket Price Calculator</title>
+</head>
+<body>
+    <h1>Ticket Price Calculator</h1>
+    <form action="/calculateTicketPrice" method="post">
+        <label for="fromLocation">From Location:</label>
+        <input type="text" id="fromLocation" name="fromLocation" required><br>
+        <label for="toLocation">To Location:</label>
+        <input type="text" id="toLocation" name="toLocation" required><br>
+        <input type="submit" value="Confirm Ticket">
+    </form>
+</body>
+</html>

@@ -1,0 +1,19 @@
+package com.demo.springdemo;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class SpringConfiguration {
+	@Bean
+	public productComponent getProduct() {
+		return new productComponent();
+	}
+	@Bean
+	public CartComponent getCart() {
+		return new CartComponent();
+	}
+}
+ 
+
+}

@@ -1,0 +1,5 @@
+package orm.hibernateDemo.config;
+
+public class HibernateUtility {
+
+}

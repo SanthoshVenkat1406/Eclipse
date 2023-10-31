@@ -1,0 +1,18 @@
+package com.example.demo.repository;
+
+import org.springframework.data.repository.CrudRepository;
+
+import com.example.demo.controller.TrainController;
+import com.example.demo.entities.TicketBooking;
+import com.example.demo.entities.addTrain;
+
+public interface TrainRepository extends CrudRepository<TicketBooking, Long>{
+
+	void saveTrain(TrainController newTrain);
+
+	static void save(addTrain train) {
+		
+		
+	}
+
+}

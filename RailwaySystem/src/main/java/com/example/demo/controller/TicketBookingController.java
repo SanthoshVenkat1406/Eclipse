@@ -1,0 +1,82 @@
+package com.example.demo.controller;
+
+import java.sql.Date;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.example.demo.entities.City;
+import com.example.demo.entities.LocationDistance;
+import com.example.demo.entities.TicketBooking;
+import com.example.demo.repository.CityRepository;
+import com.example.demo.repository.LocationDistanceRepository;
+import com.example.demo.repository.TicketBookingRepository;
+
+
+@Controller
+public class TicketBookingController {
+    @Autowired
+    private TicketBookingRepository bookingRepository;
+    @Autowired
+        private CityRepository cityRepository;
+    @Autowired
+    	private LocationDistanceRepository LocationDistance;
+    
+    
+    
+    
+    
+        @GetMapping("/ticketBooking")
+        public String showTicketBookingForm(Model model) {
+            Iterable<City> cities = cityRepository.findAll();
+            cities.forEach(System.out::println);
+            model.addAttribute("cities", cities);
+            return "ticketBookingForm";
+        }
+
+    @PostMapping("/ticketBooking")
+    public ModelAndView submitTicketBooking(
+        @RequestParam String fromLocation,
+        @RequestParam String toLocation,
+        @RequestParam Date date,
+        @RequestParam String travelClass,
+        @RequestParam String journeyType
+    ) {
+        // Create a new ticket booking
+        TicketBooking booking = new TicketBooking();
+        booking.setFromLocation(fromLocation);
+        booking.setToLocation(toLocation);
+        booking.setTravelDate(date);
+        booking.setTravelClass(travelClass);
+        booking.setJourneyType(journeyType);
+
+        LocationDistance location = LocationDistance.findByFromLocationAndToLocation(fromLocation, toLocation);
+        
+        double ticketPrice = calculateTicketPrice(location, travelClass, journeyType);
+     
+        booking.setTicketPrice(ticketPrice);
+     
+        bookingRepository.save(booking);
+     
+        ModelAndView modelAndView = new ModelAndView("ticket");
+        modelAndView.addObject("ticketBooking", booking);
+     
+        return modelAndView;
+    }
+
+	private double calculateTicketPrice(LocationDistance location, String travelClass,
+			String journeyType) {
+		double basePrice = location.getDistanceKilometers()*0.1;
+		double classPrice = travelClass.equals("Business") ?50.0 : 30.0;
+		double journeyPrice = journeyType.equals("return") ?2.0 : 1.0;
+		return basePrice * classPrice * journeyPrice;
+	}
+
+    
+}

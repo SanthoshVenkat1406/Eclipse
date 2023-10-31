@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="demoProject"></form>
+	Part_id <input type = "text" name="p_id"><br>
+	Part_name <input type = "text" name ="p_name"><br>
+	Color <select>
+		<option> Blue </option>
+		<option>Green</option>
+		<option>Red</option>
+	</select><br>
+<input type="submit" value ="add"><br><br>
+<input type="submit" value ="delete"><br><br>
+<input type="submit" value="update"><br><br>
+
+</body>
+</html>

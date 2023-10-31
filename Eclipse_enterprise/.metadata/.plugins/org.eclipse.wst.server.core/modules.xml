@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<modules>
+  <module moduleId="org.eclipse.jst.jee.server:Bankproject" serverId="apache-tomcat-8.5.92 at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:dbDemo" serverId="Tomcat v8.5 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.j2ee.server:webappDemo" serverId="apache-tomcat-8.5.92 at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:Sandy" serverId="Tomcat v8.5 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:Admin" serverId="apache-tomcat-8.5.92 at localhost"/>
+</modules>

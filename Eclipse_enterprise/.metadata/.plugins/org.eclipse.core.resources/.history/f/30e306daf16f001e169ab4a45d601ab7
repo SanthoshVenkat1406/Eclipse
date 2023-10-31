@@ -1,0 +1,32 @@
+package orm.hibernateDemo;
+
+ 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import orm.hibernateDemo.entities.Product;
+import orm.hibernateDemo.config.HibernateUtility;
+ 
+public class App2 {
+    public static void main(String[] args) {
+        SessionFactory sessionFactory = HibernateUtility.getSessionFactory();
+        Session session = sessionFactory.openSession();
+ 
+        Product prdObj = new Product(1,"Java","Book",700);
+        Product prdObj1 = new Product(2,"JDBC","Data",1000);
+        Transaction trnx = session.beginTransaction();
+        session.save(prdObj1);
+        trnx.commit();
+ 
+        Product prdObjRetrieved = session.get(Product.class, 1);
+        prdObjRetrieved.setPrdPrice(3900);
+ 
+        Transaction trnxUpdate = session.beginTransaction();
+        session.update(prdObjRetrieved);
+        trnxUpdate.commit();
+ 
+        session.close();
+        System.out.println(prdObjRetrieved);
+    }
+}
+ 
